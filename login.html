@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Login</title>
+    <style>
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #90b6fc, #2a5298);
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+        }
+        .login-container {
+            color: white;
+            text-shadow: 1px 1px 3px black;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #2a5298;
+            color: white;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #1e3c72;
+        }
+        .login-container .password-options {
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-container .password-options button {
+            width: 48%;
+        }
+
+        button#toggle-body {
+            width: 30%;
+            
+        }
+        button#toggle-body:active {
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" placeholder="Usuario" id="usuario">
+        <input type="password" placeholder="Contraseña" id="contrasena">
+        <div class="password-options">
+            <button id="recuperar">Recuperar Contraseña</button>
+            <button id="mostrar">Mostrar Contraseña</button>
+        </div>
+        <button id="login">Iniciar Sesión</button>
+        <button id="toggle-body">Cambiar estilo</button>
+        
+    </div>
+
+    <script>
+        const mostrarBtn = document.getElementById('mostrar');
+        const contrasenaInput = document.getElementById('contrasena');
+        const loginBtn = document.getElementById('login');
+        const usuarioInput = document.getElementById('usuario');
+
+        mostrarBtn.addEventListener('click', () => {
+            if (contrasenaInput.type === 'password') {
+                contrasenaInput.type = 'text';
+                mostrarBtn.textContent = 'Ocultar Contraseña';
+            } else {
+                contrasenaInput.type = 'password';
+                mostrarBtn.textContent = 'Mostrar Contraseña';
+            }
+        });
+
+        loginBtn.addEventListener('click', () => {
+            const usuario = usuarioInput.value;
+            const contrasena = contrasenaInput.value;
+
+            if (usuario === 'Alan' && contrasena === '1234') {
+                window.location.href = 'nueva_pagina.html';
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        });
+
+
+        const toggleBody = document.getElementById('toggle-body');
+        toggleBody.addEventListener('click', () => {
+            const body = document.querySelector('body');
+            const currentBackground = body.style.backgroundImage;
+
+            if (currentBackground.includes('photo-1739463146961-078f4ac580e3')) {
+            body.style.backgroundImage = 'url(https://images.unsplash.com/photo-1736230990003-a98eea26ea1f?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDA4MjIwNjB8&ixlib=rb-4.0.3&q=85)';
+            } else if (currentBackground.includes('photo-1736230990003-a98eea26ea1f')) {
+            body.style.backgroundImage = 'linear-gradient(to bottom, #90b6fc, #2a5298)';
+            } else {
+            body.style.backgroundImage = 'url(https://images.unsplash.com/photo-1739463146961-078f4ac580e3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDA1MDE4NjB8&ixlib=rb-4.0.3&q=85)';
+            }
+        });
+    </script>
+</body>
+</html>
